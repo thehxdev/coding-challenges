@@ -33,6 +33,12 @@ int main(void) {
             current_floor -= 1;
 
         if (current_floor == -1) {
+            /*
+             * the answer is `i + 1` because indexing the array
+             * in C starts from 0 and in the real life it starts
+             * from 1. So we have to increment i by 1 to submit correct
+             * answer.
+             */
             printf("Challenge 2: %u\n", i + 1);
             break;
         }
