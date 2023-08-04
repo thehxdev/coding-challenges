@@ -1,20 +1,28 @@
 #include <stdio.h>
-#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include "d2.h"
 
-uint64_t power(uint64_t num, uint64_t p);
-
+#define BUFF_SIZE 4
 
 int main(void) {
-    uint64_t x = power(2, 64);
-    printf("%lu\n", x - 1);
+    int res1 = 0, res2 = 0;
+    char buff[BUFF_SIZE];
+    const char *inputFile = "./input.txt";
+    FILE *fp = fopen(inputFile, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "ERROR: Cannot open file %s\n", inputFile);
+        return 1;
+    }
+
+    while (fgets(buff, BUFF_SIZE, fp) != NULL) {
+        res1 += player_score(buff[0], buff[2]);
+        res2 += round_score(buff[0], buff[2]);
+    }
+
+    printf("Challenge 1: %d\n", res1);
+    printf("Challenge 2: %d\n", res2);
+    fclose(fp);
     return 0;
 }
 
-
-uint64_t power(uint64_t num, uint64_t p) {
-    uint64_t y = num;
-    for (uint64_t i = 0; i < p; i++) {
-        y *= num;
-    }
-    return y;
-}

@@ -6,3 +6,6 @@ INPUT=main.c
 
 default:
 	$(CC) $(FLAGS) $(INPUT)
+
+check:
+	valgrind --leak-check=full ./a.out
